@@ -4,7 +4,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
 
-public class Responsi1 {
+public class Objek {
 
     static void Matahari(GL gl) {
         {
