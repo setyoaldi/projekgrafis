@@ -87,14 +87,14 @@ public class Revisi implements GLEventListener, MouseListener, MouseMotionListen
 
         gl.glTranslatef(0f, 0f, 15f);
        gl.glRotatef(z, 1f, 15f, 0f);
-Responsi1.Matahari(gl);
+Objek.Matahari(gl);
 gl.glTranslatef(0f, 0f, 0f);
 
      
 gl.glTranslatef(-4.5f, 1f, 0f);
 
  gl.glRotatef(z, 5f, 0f, 5f);
-      Responsi1.Bumi(gl);
+      Objek.Bumi(gl);
        
     }
 
