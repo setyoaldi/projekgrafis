@@ -24,7 +24,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-public class TataSurya extends JFrame {
+public class Tatasurya extends JFrame {
 
     static {
 // When using a GLCanvas, we have to set the Popup-Menues to be HeavyWeight,
@@ -36,7 +36,7 @@ public class TataSurya extends JFrame {
     /**
      * Creates new form MainFrame
      */
-    public TataSurya() {
+    public Tatasurya() {
 
         initComponents();
         final GLRenderer glrender = new GLRenderer();
@@ -167,7 +167,7 @@ public class TataSurya extends JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(getClass().getName()).log(Level.INFO, "can not enable system look and feel", ex);
                 }
-                TataSurya frame = new TataSurya();
+                Tatasurya frame = new Tatasurya();
                 frame.setVisible(true);
             }
         });
