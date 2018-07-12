@@ -1,9 +1,13 @@
 package org.yourorghere;
 
+import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureIO;
+import java.io.File;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import javax.media.opengl.glu.GLUquadric;
 
 public class GLRenderer implements GLEventListener {
 //class vector untuk memudah vektor-isasi
@@ -61,7 +65,7 @@ public class GLRenderer implements GLEventListener {
     boolean kamera4 = false;
     boolean kamera5 = false;
     boolean ori = true, silinder = false, kamera = false;
-
+    Texture sun,earth,merkurius,venus;
 
     /*
 ini adalah metod untuk melakukan pergerakan.
@@ -114,15 +118,15 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         System.err.println("INIT GL IS: " + gl.getClass().getName());
 // Enable VSync
         gl.setSwapInterval(1);
-        float ambient[] = {1.0f, 1.0f, 1.0f, 1.0f};
-        float diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-        float position[] = {1.0f, 1.0f, 1.0f, 0.0f};
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ambient, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, diffuse, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, position, 0);
-        gl.glEnable(GL.GL_LIGHT0);
-        gl.glEnable(GL.GL_LIGHTING);
-        gl.glEnable(GL.GL_DEPTH_TEST);
+        try {
+            sun = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Sun.bmp"),true);
+            earth = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Earth.bmp"),true);
+            merkurius = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Mercury.bmp"),true);
+            venus = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Venus.bmp"),true);
+            
+        } catch (Exception e) {
+            System.out.println("Filenya not found");
+        }
         gl.glClearColor(0f, 0f, 0f, 0f);
         gl.glShadeModel(GL.GL_SMOOTH);
     }
@@ -144,27 +148,62 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
     }
 
     public void display(GLAutoDrawable drawable) {
-        x += 10;
+        x += 2;
         GL gl = drawable.getGL();
         GLU glu = new GLU();
+        GLUquadric q = glu.gluNewQuadric();
 // Clear the drawing area
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 // Reset the current matrix to the "identity"
         gl.glLoadIdentity();
-        gl.glPushMatrix();
+        
 // Move the "drawing cursor" around
         glu.gluLookAt(Cx, Cy, Cz,
                 Lx, Ly, Lz,
                 vertikal.x, vertikal.y, vertikal.z);
         gl.glTranslatef(0f, 0f, -20f);
+        //Matahari
+        gl.glPushMatrix();
         gl.glRotatef(x, 0, 0, -100);
-        Objek.Matahari(gl);
+        sun.enable();
+        sun.bind();
+        glu.gluQuadricTexture(q, true);
+        glu.gluSphere(q, 0.7, 60, 60);
+        sun.disable();
+        gl.glPopMatrix();
+        
+        //Merkurius
         gl.glTranslatef(-5f, 0f, 0f);
-        Objek.Merkurius(gl);
+        gl.glPushMatrix();
+        merkurius.enable();
+        merkurius.bind();
+        glu.gluQuadricTexture(q, true);
+        glu.gluSphere(q, 0.7, 60, 60);
+        merkurius.disable();
+        gl.glPopMatrix();
+        
+        //Venus
         gl.glTranslatef(0f, -5f, 0f);
-        Objek.Venus(gl);
+        gl.glPushMatrix();
+        venus.enable();
+        venus.bind();
+        glu.gluQuadricTexture(q, true);
+        glu.gluSphere(q, 0.7, 60, 60);
+        venus.disable();
+        gl.glPopMatrix();
+        
+        //Bumi
         gl.glTranslatef(10f, 10f, 0f);
-        Objek.Bumi(gl);
+        gl.glPushMatrix();
+        gl.glRotatef(x, 0, 0, -100);
+        earth.enable();
+        earth.bind();
+        glu.gluQuadricTexture(q, true);
+        glu.gluSphere(q, 0.7, 60, 60);
+        earth.disable();
+        gl.glPopMatrix();
+        
+        
         if (kamera) {
             Key_Pressed(39);
         }
