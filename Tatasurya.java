@@ -24,7 +24,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-public class Tatasurya extends JFrame {
+public class TataSurya extends JFrame {
 
     static {
 // When using a GLCanvas, we have to set the Popup-Menues to be HeavyWeight,
