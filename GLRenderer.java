@@ -53,19 +53,13 @@ public class GLRenderer implements GLEventListener {
     vector depanBelakang = new vector(0f, 0f, -1f);//deklarasi awal vektor untuk maju & mundur
     vector samping = new vector(1f, 0f, 0f);//deklarasi awal vektor untuk gerakan ke kanan & kiri
     vector vertikal = new vector(0f, 1f, 0f);//deklarasi awal vetor untuk gerakan naik & turun
-
+vector sumbuz = new vector(1f, 1f, 1f);
     float Cx = 0, Cy = 2.5f, Cz = 0;
     float Lx = 0, Ly = 2.5f, Lz = -20f;
-
-    boolean silinder2 = false;
-    boolean silinder3 = false;
-    boolean silinder4 = false;
-    boolean kamera2 = false;
-    boolean kamera3 = false;
-    boolean kamera4 = false;
-    boolean kamera5 = false;
-    boolean ori = true, silinder = false, kamera = false;
-    Texture sun,earth,merkurius,venus;
+  float angle_depanBelakang = 0f;
+    float angle_depanBelakang2 = 0f;
+     boolean kamera5 = false;
+    Texture sun,earth,merkurius,venus,mars,jupiter,saturnus,uranus,neptunus, bulan;
 
     /*
 ini adalah metod untuk melakukan pergerakan.
@@ -119,15 +113,23 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
 // Enable VSync
         gl.setSwapInterval(1);
         try {
-            sun = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Sun.bmp"),true);
-            earth = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Earth.bmp"),true);
-            merkurius = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Mercury.bmp"),true);
-            venus = TextureIO.newTexture(new File("E:\\Kuliah\\Semester VI\\Pemrograman Grafis\\Venus.bmp"),true);
+            sun = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Sun.bmp"),true);
+            merkurius = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Mercury.bmp"),true);
+           venus = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Venus.bmp"),true);
+           earth = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Earth.bmp"),true);
+            mars = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Mars.bmp"),true);
+            jupiter = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Jupiter.bmp"),true);
+             saturnus = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Saturnus.jpg"),true);
+             uranus = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Uranus.bmp"),true);
+             neptunus = TextureIO.newTexture(new File("D:\\KULIAH\\images\\Neptune.bmp"),true);
+            bulan = TextureIO.newTexture(new File("D:\\KULIAH\\images\\bulan.bmp"),true);
             
         } catch (Exception e) {
             System.out.println("Filenya not found");
         }
+      
         gl.glClearColor(0f, 0f, 0f, 0f);
+     
         gl.glShadeModel(GL.GL_SMOOTH);
     }
 
@@ -142,11 +144,10 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         gl.glViewport(0, 0, width, height);
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
-        glu.gluPerspective(45.0f, h, 1.0, 20.0);
+        glu.gluPerspective(45.0f, h, 1.0, 200.0);
         gl.glMatrixMode(GL.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
-
     public void display(GLAutoDrawable drawable) {
         x += 2;
         GL gl = drawable.getGL();
