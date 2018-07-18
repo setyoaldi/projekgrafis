@@ -225,22 +225,79 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         gl.glPopMatrix();
         
     
+        //mars
+        gl.glPushMatrix();
+         gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(11f, -5f, 0f);
+        mars.enable();
+        mars.bind();
+        glu.gluQuadricTexture(q, true);
+        gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 0.6, 40, 40);
+        mars.disable();
+        gl.glPopMatrix();
         
-        if (kamera) {
-            Key_Pressed(39);
-        }
-        if (kamera2) {
-            Key_Pressed(37);    //x+
-        }
-        if (kamera3) {
-            Key_Pressed(89);    //y+
-        }
-        if (kamera4) {
-            Key_Pressed(38);    //y-
-        }
-        gl.glFlush();
-    }
+        //jupiter
+         gl.glPushMatrix();
+         gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(17f, 0f, 0f);
+        jupiter.enable();
+        jupiter.bind();
+        glu.gluQuadricTexture(q, true);
+         gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 2, 80, 80);
+        jupiter.disable();
+        gl.glPopMatrix();
+        
+        
+        //saturnus
+         gl.glPushMatrix();
+         gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(0f, 25f, 0f);
+        saturnus.enable();
+        saturnus.bind();
+        glu.gluQuadricTexture(q, true);
+         gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 1.5, 70, 70);
+         saturnus.disable();
+         gl.glTranslatef(0f, 0f, 0f);
+         saturnus.enable();
+         saturnus.bind();
+        glu.gluDisk(q, 2f, 3f, 100, 100);
+       saturnus.disable();
+        gl.glPopMatrix();
+        
+        
+       //Uranus
+         gl.glPushMatrix();
+         gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(29f, -11f, 0f);
+        uranus.enable();
+        uranus.bind();
+        glu.gluQuadricTexture(q, true);
+         gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 1.2, 60, 60);
+        uranus.disable();
+        gl.glPopMatrix();
+        
+        
+           
+       //Neptunus
+         gl.glPushMatrix();
+         gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(35f, 0f, 0f);
+        neptunus.enable();
+        neptunus.bind();
+        glu.gluQuadricTexture(q, true);
+         gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 1.1, 55, 55);
+        neptunus.disable();
+        gl.glPopMatrix();
+    
+     
 
+    }
+        
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     }
 
