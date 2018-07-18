@@ -321,5 +321,13 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         else if (keyCode == 40) {
             vectorMovement(vertikal, 2f, -1f);
         }
+         
+     else if (keyCode == 32) {
+            if (silinder) {
+                silinder = false;
+            } else {
+                silinder = true;
+            }
     }
+}
 }
