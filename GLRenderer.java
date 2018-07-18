@@ -130,8 +130,7 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         }
       
         gl.glClearColor(0f, 0f, 0f, 0f);
-     
-        gl.glShadeModel(GL.GL_SMOOTH);
+        gl.glEnable(GL.GL_DEPTH_TEST);
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
