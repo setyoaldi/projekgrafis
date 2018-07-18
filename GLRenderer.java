@@ -148,6 +148,7 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         gl.glMatrixMode(GL.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
+    //OBJEK
     public void display(GLAutoDrawable drawable) {
         x += 2;
         GL gl = drawable.getGL();
@@ -162,6 +163,7 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         glu.gluLookAt(Cx, Cy, Cz,
                 Lx, Ly, Lz,
                 vertikal.x, vertikal.y, vertikal.z);
+      
         gl.glTranslatef(0f, 0f, -20f);
         //Matahari
         gl.glPushMatrix();
@@ -169,41 +171,60 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         sun.enable();
         sun.bind();
         glu.gluQuadricTexture(q, true);
-        glu.gluSphere(q, 0.7, 60, 60);
+        glu.gluSphere(q, 3, 100, 100);
         sun.disable();
         gl.glPopMatrix();
         
         //Merkurius
+           gl.glPushMatrix();
+     gl.glRotatef(x, 0, 0, -100);
         gl.glTranslatef(-5f, 0f, 0f);
-        gl.glPushMatrix();
         merkurius.enable();
         merkurius.bind();
         glu.gluQuadricTexture(q, true);
-        glu.gluSphere(q, 0.7, 60, 60);
+        gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 0.3, 30, 30);
         merkurius.disable();
         gl.glPopMatrix();
         
         //Venus
-        gl.glTranslatef(0f, -5f, 0f);
         gl.glPushMatrix();
+         gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(-4f, -5f, 0f);
         venus.enable();
         venus.bind();
         glu.gluQuadricTexture(q, true);
-        glu.gluSphere(q, 0.7, 60, 60);
+        gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 0.7, 50, 50);
         venus.disable();
         gl.glPopMatrix();
         
-        //Bumi
-        gl.glTranslatef(10f, 10f, 0f);
+        //Bumi dan bulan
         gl.glPushMatrix();
-        gl.glRotatef(x, 0, 0, -100);
+          gl.glRotatef(x, 0, 0, -100);
+        gl.glTranslatef(9f, 0f, 0f);
         earth.enable();
         earth.bind();
         glu.gluQuadricTexture(q, true);
-        glu.gluSphere(q, 0.7, 60, 60);
+        gl.glRotatef(x, 0, 0, -100);
+         
+        glu.gluSphere(q, 0.9, 70, 70);
         earth.disable();
+         if (silinder) {
+            silinderAngle += 15f; //x+
+        }
+        gl.glRotatef(silinderAngle, 0f, 0f, -1);
+        gl.glTranslatef(1.5f, 0f, 0f);
+         
+        bulan.enable();
+        bulan.bind();
+        glu.gluQuadricTexture(q, true);
+        gl.glRotatef(x, 0, 0, -100);
+        glu.gluSphere(q, 0.2, 20, 20);
+        bulan.disable();
         gl.glPopMatrix();
         
+    
         
         if (kamera) {
             Key_Pressed(39);
