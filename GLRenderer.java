@@ -302,12 +302,12 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
     }
 
     void Key_Pressed(int keyCode) {
-//huruf W
-        if (keyCode == 87) {
-            vectorMovement(depanBelakang, 2f, 1f);
-        } //huruf S
-        else if (keyCode == 83) {
-            vectorMovement(depanBelakang, 2f, -1f);
+//huruf D
+        if (keyCode == 68) {      
+            vectorMovement(depanBelakang, 2f, 2f);
+        } //huruf E
+        else if (keyCode == 69) {
+            vectorMovement(depanBelakang, 2f, -2f);
         } //PANAH KANAN
         else if (keyCode == 39) {
             vectorMovement(samping, 2f, 1f);
