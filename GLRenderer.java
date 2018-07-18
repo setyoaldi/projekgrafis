@@ -58,7 +58,8 @@ vector sumbuz = new vector(1f, 1f, 1f);
     float Lx = 0, Ly = 2.5f, Lz = -20f;
   float angle_depanBelakang = 0f;
     float angle_depanBelakang2 = 0f;
-     boolean kamera5 = false;
+          boolean silinder = false;
+      float silinderAngle = 90f;
     Texture sun,earth,merkurius,venus,mars,jupiter,saturnus,uranus,neptunus, bulan;
 
     /*
